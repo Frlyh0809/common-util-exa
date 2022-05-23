@@ -1,0 +1,68 @@
+
+# Tomcat
+server:
+  port: 8081
+
+# Spring
+spring:
+  application:
+    name: exa
+  profiles:
+    active: dev
+
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  jackson:
+    defaultPropertyInclusion: NON_NULL
+  ##任务线程池
+  task:
+    scheduling:
+      pool:
+        size: 200
+
+
+
+---
+spring:
+  profiles: dev
+
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 'lyh123456789'
+    database: 11
+
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+      config:
+        enabled: false
+
+
+
+---
+spring:
+  profiles: prod
+
+  cloud:
+    kubernetes:
+      enabled: false
+    nacos:
+      discovery:
+        #         服务注册地址
+        server-addr: 172.31.2.231:8848
+      config:
+        refresh-enabled: true
+        # 配置中心地址
+        #        server-addr: 127.0.0.1:8848
+        server-addr: 172.31.2.231:8848
+        namespace: bsc
+        group: bsc
+        shared-configs:
+          - data-id: nftscan-website-task-bsc-prod.yml
+            group: bsc
+            refresh: true

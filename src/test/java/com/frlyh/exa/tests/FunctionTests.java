@@ -2,7 +2,7 @@
  * https://nftscan.com/
  * Copyright © 2022  All rights reserved.
  */
-package com.frlyh.exa.test;
+package com.frlyh.exa.tests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
